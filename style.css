@@ -1,0 +1,183 @@
+/* ==========================================================================
+   1. VARIÁVEIS E CONFIGURAÇÕES GLOBAIS
+   ========================================================================== */
+:root {
+  --primary-color: #0077b6;   /* Azul oceano */
+  --secondary-color: #00b4d8; /* Azul claro / água */
+  --accent-color: #90e0ef;    /* Azul vapor */
+  --dark-blue: #005f92;       /* Azul escuro para hover e destaque */
+  --bg-color: #f4f8fb;        /* Fundo suave da página */
+  --text-color: #2b2d42;      /* Cor do texto principal */
+  --white: #ffffff;
+  --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   2. CABEÇALHO (HEADER) E NAVEGAÇÃO
+   ========================================================================== */
+header {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: var(--white);
+  text-align: center;
+  padding: 3.5rem 1rem;
+  border-bottom: 5px solid var(--accent-color);
+}
+
+header h1 {
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
+}
+
+header p {
+  font-size: 1.2rem;
+  opacity: 0.95;
+}
+
+nav {
+  background-color: var(--dark-blue);
+  text-align: center;
+  padding: 0.8rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav a {
+  color: var(--white);
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--accent-color);
+}
+
+/* ==========================================================================
+   3. ESTRUTURA PRINCIPAL (MAIN & CONTAINERS)
+   ========================================================================== */
+.container {
+  max-width: 1100px;
+  margin: 2.5rem auto;
+  padding: 0 1.5rem;
+}
+
+.intro {
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.intro h2 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+/* ==========================================================================
+   4. GRID E CARDS DAS ETAPAS
+   ========================================================================== */
+.etapas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.8rem;
+}
+
+.card-etapa {
+  background-color: var(--white);
+  border-radius: 12px;
+  padding: 1.8rem;
+  box-shadow: var(--shadow);
+  border-top: 5px solid var(--secondary-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-etapa:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.card-etapa .numero {
+  display: inline-block;
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+  font-weight: bold;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 35px;
+  margin-bottom: 1rem;
+}
+
+.card-etapa h3 {
+  color: var(--primary-color);
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+}
+
+/* ==========================================================================
+   5. SEÇÃO DE IMPORTÂNCIA E DESTAQUES
+   ========================================================================== */
+.importancia {
+  margin-top: 3rem;
+  background-color: #e0f4fc;
+  border-left: 5px solid var(--primary-color);
+  padding: 1.5rem 2rem;
+  border-radius: 8px;
+}
+
+.importancia h3 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+/* ==========================================================================
+   6. RODAPÉ (FOOTER)
+   ========================================================================== */
+footer {
+  background-color: var(--primary-color);
+  color: var(--white);
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 4rem;
+}
+
+/* ==========================================================================
+   7. RESPONSIVIDADE
+   ========================================================================== */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  nav a {
+    display: block;
+    margin: 8px 0;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+}
