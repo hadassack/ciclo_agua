@@ -3,35 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Y2K Water Zone</title>
+  <title>A Incrível Jornada da Água! 💧</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <div class="water-drop-fx" id="dropFx"></div>
+  <header class="hero">
+    <h1>💧 O Incrível Ciclo da Água 🌊</h1>
+    <p>Descubra como a água viaja pelo nosso planeta em uma aventura infinita!</p>
+    <button id="btn-curiosidade" class="btn-pop">✨ Curiosidade Surpresa!</button>
+    <div id="box-curiosidade" class="hidden"></div>
+  </header>
 
-  <div class="container">
-    <header>
-      <h1 class="y2k-title">SPLASH_ZONE.EXE</h1>
-      <p class="subtitle">Aesthetic Y2K & Kidcore Cyber Oasis</p>
-    </header>
-
-    <main>
-      <div class="bubble-card">
-        <div class="droplet-icon">💧</div>
-        <h2>Nível de Hidratação</h2>
-        <div class="counter" id="waterCounter">0%</div>
-        
-        <div class="button-group">
-          <button class="y2k-btn" id="btnDrink">Beber Água 💦</button>
-          <button class="y2k-btn alt" id="btnReset">Resetar 🔄</button>
-        </div>
+  <main class="container">
+    <section class="etapas-grid">
+      
+      <div class="card evaporacao" data-info="O Sol aquece a água dos rios, lagos e oceanos, transformando-a em vapor que sobe para o céu!">
+        <div class="icon">☀️</div>
+        <h2>1. Evaporação</h2>
+        <p>A água esquenta e vira vapor!</p>
+        <button class="btn-card">Saber mais</button>
       </div>
-    </main>
 
-    <div class="bubbles-container" id="bubblesBg"></div>
-  </div>
-
-  <script src="script.js"></script>
-</body>
-</html>
+      <div class="card condensacao" data-info="Lá no alto, o vapor esfria e se junta em gotinhas de água, criando as nuvens fofinhas!">
+        <div class="icon">☁️</div>
+        <h2>2. Condensação</h2>
+        <p
