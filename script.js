@@ -1,198 +1,324 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap');
+// ==========================================
+// INFORMAÇÕES DAS ETAPAS
+// ==========================================
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+const infos = {
+    evaporacao: {
+        titulo: "☀️ Evaporação",
+        texto: "O Sol fornece energia e aquece a água presente nos oceanos, rios, lagos e outros lugares. Quando recebe calor suficiente, a água líquida se transforma em vapor e sobe para a atmosfera."
+    },
+
+    condensacao: {
+        titulo: "☁️ Condensação",
+        texto: "O vapor de água sobe para regiões mais frias da atmosfera. Ao perder calor, ele se transforma em pequenas gotículas de água. Muitas dessas gotículas juntas formam as nuvens."
+    },
+
+    precipitacao: {
+        titulo: "🌧️ Precipitação",
+        texto: "Quando as gotículas de água nas nuvens ficam grandes e pesadas, elas caem para a superfície da Terra. Isso pode acontecer como chuva, neve ou granizo."
+    },
+
+    infiltracao: {
+        titulo: "🌱 Infiltração",
+        texto: "Uma parte da água que chega ao solo penetra pelos espaços entre as partículas. Essa água pode alimentar os lençóis freáticos e contribuir para o crescimento das plantas."
+    }
+};
+
+
+// ==========================================
+// MOSTRAR INFORMAÇÕES
+// ==========================================
+
+function showInfo(tipo) {
+
+    const info = infos[tipo];
+
+    const box = document.getElementById("info-box");
+
+    box.innerHTML = `
+        <div class="info-icon">${info.titulo.substring(0, 2)}</div>
+        <div>
+            <h3>${info.titulo}</h3>
+            <p>${info.texto}</p>
+        </div>
+    `;
+
+    box.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
 }
 
-html {
-    scroll-behavior: smooth;
+
+// ==========================================
+// ANIMAÇÃO
+// ==========================================
+
+function startAnimation() {
+
+    const area = document.getElementById("animation-area");
+
+    area.classList.toggle("active");
+
+    if (area.classList.contains("active")) {
+        area.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    color: #183b56;
-    background: #f7fcff;
-    overflow-x: hidden;
+
+// ==========================================
+// MODAL
+// ==========================================
+
+function openModal(title, text) {
+
+    const modal = document.getElementById("modal");
+    const content = document.getElementById("modal-content");
+
+    content.innerHTML = `
+        <h2>${title}</h2>
+        <p>${text}</p>
+    `;
+
+    modal.classList.add("show");
 }
 
-.hero {
-    min-height: 720px;
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(145deg, #36c5f0, #287be5);
-    color: white;
+
+function closeModal() {
+    document.getElementById("modal").classList.remove("show");
 }
 
-.hero::before {
-    content: "";
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.08);
-    right: -200px;
-    top: -200px;
+
+document.getElementById("modal").addEventListener("click", function(event) {
+
+    if (event.target === this) {
+        closeModal();
+    }
+
+});
+
+
+// ==========================================
+// QUIZ
+// ==========================================
+
+const questions = [
+
+    {
+        question: "Qual fonte de energia ajuda a causar a evaporação?",
+        answers: [
+            "🌙 A Lua",
+            "☀️ O Sol",
+            "⭐ As estrelas",
+            "🌬️ O vento"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "Como se chama o processo de formação das nuvens?",
+        answers: [
+            "🌱 Infiltração",
+            "🌊 Escoamento",
+            "☁️ Condensação",
+            "🔥 Combustão"
+        ],
+        correct: 2
+    },
+
+    {
+        question: "Qual destes é um exemplo de precipitação?",
+        answers: [
+            "🌧️ Chuva",
+            "☀️ Sol",
+            "🌫️ Vapor",
+            "🌊 Oceano"
+        ],
+        correct: 0
+    },
+
+    {
+        question: "Para onde parte da água da chuva pode ir?",
+        answers: [
+            "🌌 Para o espaço",
+            "🌱 Para o solo",
+            "☀️ Para o Sol",
+            "🚀 Para outro planeta"
+        ],
+        correct: 1
+    }
+
+];
+
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+
+
+function loadQuestion() {
+
+    const question = questions[currentQuestion];
+
+    document.getElementById("question-number").textContent =
+        `Pergunta ${currentQuestion + 1} de ${questions.length}`;
+
+    document.getElementById("question").textContent =
+        question.question;
+
+    const answersContainer = document.getElementById("answers");
+
+    answersContainer.innerHTML = "";
+
+    question.answers.forEach((answerText, index) => {
+
+        const button = document.createElement("button");
+
+        button.textContent = answerText;
+
+        button.onclick = () => answer(index);
+
+        answersContainer.appendChild(button);
+
+    });
+
+    document.getElementById("quiz-result").textContent = "";
+
+    answered = false;
 }
 
-nav {
-    max-width: 1200px;
-    margin: auto;
-    height: 90px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 25px;
-    position: relative;
-    z-index: 10;
+
+function answer(index) {
+
+    if (answered) return;
+
+    answered = true;
+
+    const question = questions[currentQuestion];
+
+    const buttons = document.querySelectorAll(".answers button");
+
+    if (index === question.correct) {
+
+        buttons[index].classList.add("correct");
+
+        score++;
+
+        document.getElementById("quiz-result").innerHTML =
+            "🎉 Muito bem! Você acertou!";
+
+    } else {
+
+        buttons[index].classList.add("wrong");
+
+        buttons[question.correct].classList.add("correct");
+
+        document.getElementById("quiz-result").innerHTML =
+            "💡 Quase! A resposta correta está destacada em verde.";
+    }
+
+    setTimeout(() => {
+
+        currentQuestion++;
+
+        if (currentQuestion < questions.length) {
+
+            loadQuestion();
+
+        } else {
+
+            showFinalScore();
+
+        }
+
+    }, 1500);
 }
 
-.logo,
-.footer-logo {
-    font-family: 'Baloo 2', sans-serif;
-    font-size: 28px;
-    font-weight: 800;
+
+function showFinalScore() {
+
+    document.getElementById("question-number").textContent =
+        "🏆 Quiz terminado!";
+
+    document.getElementById("question").textContent =
+        `Você fez ${score} de ${questions.length} pontos!`;
+
+    const answers = document.getElementById("answers");
+
+    answers.innerHTML = `
+        <button onclick="restartQuiz()" style="grid-column: 1 / -1;">
+            🔄 Jogar novamente
+        </button>
+    `;
+
+    let message;
+
+    if (score === 4) {
+        message = "🌟 Uau! Você é um verdadeiro especialista no ciclo da água!";
+    } else if (score >= 2) {
+        message = "💧 Muito bom! Você já entende bastante sobre o ciclo da água.";
+    } else {
+        message = "🌱 Continue estudando! Você vai aprender rapidinho.";
+    }
+
+    document.getElementById("quiz-result").textContent = message;
 }
 
-.nav-links {
-    display: flex;
-    gap: 28px;
+
+function restartQuiz() {
+
+    currentQuestion = 0;
+    score = 0;
+
+    loadQuestion();
+
 }
 
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    transition: .3s;
+
+// ==========================================
+// EFEITO DE GOTINHAS AO CLICAR
+// ==========================================
+
+document.addEventListener("click", function(event) {
+
+    if (
+        event.target.tagName === "BUTTON" ||
+        event.target.tagName === "A"
+    ) {
+        createDrop(event.clientX, event.clientY);
+    }
+
+});
+
+
+function createDrop(x, y) {
+
+    const drop = document.createElement("div");
+
+    drop.textContent = "💧";
+
+    drop.style.position = "fixed";
+    drop.style.left = `${x}px`;
+    drop.style.top = `${y}px`;
+    drop.style.fontSize = "20px";
+    drop.style.pointerEvents = "none";
+    drop.style.zIndex = "999";
+    drop.style.animation = "float 1s ease-out forwards";
+
+    document.body.appendChild(drop);
+
+    setTimeout(() => {
+        drop.remove();
+    }, 1000);
 }
 
-.nav-links a:hover {
-    color: #ffe66d;
-    transform: translateY(-2px);
-}
 
-.hero-content {
-    max-width: 1200px;
-    min-height: 600px;
-    margin: auto;
-    padding: 50px 25px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    position: relative;
-    z-index: 2;
-}
+// ==========================================
+// INICIALIZAÇÃO
+// ==========================================
 
-.hero-text {
-    max-width: 580px;
-}
+loadQuestion();
 
-.tag,
-.section-title span {
-    display: inline-block;
-    background: rgba(255,255,255,.2);
-    padding: 8px 16px;
-    border-radius: 50px;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: .5px;
-}
-
-.hero h1 {
-    font-family: 'Baloo 2', sans-serif;
-    font-size: clamp(60px, 7vw, 92px);
-    line-height: .9;
-    margin: 22px 0;
-}
-
-.hero h1 span {
-    color: #ffe66d;
-}
-
-.hero p {
-    max-width: 540px;
-    font-size: 18px;
-    line-height: 1.8;
-    color: #e9faff;
-}
-
-.buttons {
-    display: flex;
-    gap: 15px;
-    margin-top: 30px;
-    flex-wrap: wrap;
-}
-
-.btn {
-    display: inline-block;
-    border: none;
-    padding: 15px 24px;
-    border-radius: 50px;
-    font-family: inherit;
-    font-weight: 700;
-    cursor: pointer;
-    text-decoration: none;
-    transition: .3s;
-}
-
-.btn:hover {
-    transform: translateY(-4px) scale(1.03);
-}
-
-.primary {
-    background: #ffe66d;
-    color: #17476a;
-    box-shadow: 0 10px 25px rgba(0,0,0,.15);
-}
-
-.secondary {
-    color: white;
-    border: 2px solid white;
-}
-
-.water-illustration {
-    height: 500px;
-    position: relative;
-}
-
-.sun {
-    position: absolute;
-    right: 50px;
-    top: 20px;
-    font-size: 90px;
-    animation: float 3s infinite ease-in-out;
-}
-
-.cloud {
-    position: absolute;
-    font-size: 90px;
-    filter: drop-shadow(0 10px 5px rgba(0,0,0,.1));
-}
-
-.cloud1 {
-    top: 100px;
-    left: 60px;
-    animation: cloudMove 5s infinite ease-in-out;
-}
-
-.cloud2 {
-    top: 180px;
-    right: 80px;
-    font-size: 65px;
-    animation: cloudMove 6s infinite ease-in-out reverse;
-}
-
-.mountains {
-    position: absolute;
-    bottom: 80px;
-    font-size: 100px;
-    white-space: nowrap;
-}
-
-.rain {
-    position: absolute;
-    top: 180px;
-    left: 180px;
-    font-size: 25px;
-    line-height: 1.1;
+console.log("💧 AquaMundo carregado com sucesso!");
