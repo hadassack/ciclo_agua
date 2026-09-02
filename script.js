@@ -1,49 +1,38 @@
-// Dados sobre as etapas do ciclo da água
-const etapasCiclo = {
-  evaporacao: {
-    titulo: "1. Evaporação",
-    descricao: "Com o calor do Sol, a água dos oceanos, rios e lagos aquece e transforma-se em vapor de água, subindo para a atmosfera."
-  },
-  transpiracao: {
-    titulo: "2. Transpiração",
-    descricao: "Os seres vivos (plantas e animais) também liberam água na forma de vapor para a atmosfera através da transpiração."
-  },
-  condensacao: {
-    titulo: "3. Condensação",
-    descricao: "Ao subir, o vapor de água esfria e volta ao estado líquido, formando pequenas gotinhas que se juntam para criar as nuvens."
-  },
-  precipitacao: {
-    titulo: "4. Precipitação",
-    descricao: "Quando as nuvens ficam muito pesadas e carregadas de gotas d'água, ocorre a chuva (ou neve/granizo em regiões muito frias)."
-  },
-  infiltracao: {
-    titulo: "5. Infiltração e Escoamento",
-    descricao: "A água que cai no solo penetra na terra alimentando os lençóis freáticos (infiltração) ou corre pela superfície até os rios e mares (escoamento)."
+let waterLevel = 0;
+
+const counterDisplay = document.getElementById('waterCounter');
+const btnDrink = document.getElementById('btnDrink');
+const btnReset = document.getElementById('btnReset');
+const dropFx = document.getElementById('dropFx');
+
+// Ação de som simulação + aumentar contador
+btnDrink.addEventListener('click', () => {
+  if (waterLevel < 100) {
+    waterLevel += 20;
+    counterDisplay.textContent = `${waterLevel}%`;
+    triggerDropAnimation();
   }
-};
-
-// Função para exibir as informações da etapa selecionada
-function mostrarInfo(etapa) {
-  const painelInfo = document.getElementById("info-painel");
-  const dados = etapasCiclo[etapa];
-
-  if (dados) {
-    painelInfo.innerHTML = `
-      <h3>${dados.titulo}</h3>
-      <p>${dados.descricao}</p>
-    `;
-    painelInfo.classList.add("ativo");
+  
+  if (waterLevel === 100) {
+    counterDisplay.style.color = '#00ffcc';
+    alert('✨ HIDRATAÇÃO MÁXIMA! VERY Y2K! 💦✨');
   }
-}
-
-// Configuração dos eventos após o carregamento do DOM
-document.addEventListener("DOMContentLoaded", () => {
-  const botoesEtapas = document.querySelectorAll(".btn-etapa");
-
-  botoesEtapas.forEach((botao) => {
-    botao.addEventListener("click", (evento) => {
-      const etapaSelecionada = evento.target.getAttribute("data-etapa");
-      mostrarInfo(etapaSelecionada);
-    });
-  });
 });
+
+// Ação de resetar
+btnReset.addEventListener('click', () => {
+  waterLevel = 0;
+  counterDisplay.textContent = '0%';
+  counterDisplay.style.color = 'var(--yellow-kidcore)';
+});
+
+// Animação dinâmica de gota caindo na tela
+function triggerDropAnimation() {
+  dropFx.style.left = `${Math.random() * 80 + 10}%`;
+  dropFx.classList.remove('drop-animate');
+  
+  // Força o reflow para reiniciar a animação CSS
+  void dropFx.offsetWidth; 
+  
+  dropFx.classList.add('drop-animate');
+}
