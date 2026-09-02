@@ -3,248 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>O Ciclo da Água - A Jornada da Vida</title>
-  <style>
-    /* Configurações Globais e Variáveis */
-    :root {
-      --primary-color: #0077b6;   /* Azul oceano */
-      --secondary-color: #00b4d8; /* Azul claro/água */
-      --accent-color: #90e0ef;    /* Azul vapor */
-      --bg-color: #f4f8fb;        /* Fundo suave */
-      --text-color: #2b2d42;      /* Texto escuro */
-      --white: #ffffff;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      line-height: 1.6;
-    }
-
-    /* Cabeçalho */
-    header {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      color: var(--white);
-      text-align: center;
-      padding: 3.5rem 1rem;
-      border-bottom: 5px solid var(--accent-color);
-    }
-
-    header h1 {
-      font-size: 2.8rem;
-      margin-bottom: 0.5rem;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      opacity: 0.95;
-    }
-
-    /* Navegação */
-    nav {
-      background-color: #005f92;
-      text-align: center;
-      padding: 0.8rem;
-    }
-
-    nav a {
-      color: var(--white);
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: 600;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: var(--accent-color);
-    }
-
-    /* Container Principal */
-    .container {
-      max-width: 1100px;
-      margin: 2.5rem auto;
-      padding: 0 1.5rem;
-    }
-
-    /* Introdução */
-    .intro {
-      background-color: var(--white);
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-      margin-bottom: 2.5rem;
-      text-align: center;
-    }
-
-    .intro h2 {
-      color: var(--primary-color);
-      margin-bottom: 1rem;
-    }
-
-    /* Grid de Etapas */
-    .etapas-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.8rem;
-    }
-
-    /* Cards das Etapas */
-    .card-etapa {
-      background-color: var(--white);
-      border-radius: 12px;
-      padding: 1.8rem;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-      border-top: 5px solid var(--secondary-color);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card-etapa:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-    }
-
-    .card-etapa .numero {
-      display: inline-block;
-      background-color: var(--accent-color);
-      color: var(--primary-color);
-      font-weight: bold;
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
-      text-align: center;
-      line-height: 35px;
-      margin-bottom: 1rem;
-    }
-
-    .card-etapa h3 {
-      color: var(--primary-color);
-      font-size: 1.3rem;
-      margin-bottom: 0.8rem;
-    }
-
-    /* Curiosidades / Importância */
-    .importancia {
-      margin-top: 3rem;
-      background-color: #e0f4fc;
-      border-left: 5px solid var(--primary-color);
-      padding: 1.5rem 2rem;
-      border-radius: 8px;
-    }
-
-    .importancia h3 {
-      color: var(--primary-color);
-      margin-bottom: 0.5rem;
-    }
-
-    /* Rodapé */
-    footer {
-      background-color: var(--primary-color);
-      color: var(--white);
-      text-align: center;
-      padding: 1.5rem;
-      margin-top: 4rem;
-    }
-
-    /* Responsividade */
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
-      
-      nav a {
-        display: block;
-        margin: 8px 0;
-      }
-    }
-  </style>
+  <title>Y2K Water Zone</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Cabeçalho do Site -->
-  <header>
-    <h1>O Ciclo da Água</h1>
-    <p>Descubra como a água se transforma e circula continuamente pelo nosso planeta</p>
-  </header>
+  <div class="water-drop-fx" id="dropFx"></div>
 
-  <!-- Barra de Navegação -->
-  <nav>
-    <a href="#introducao">Início</a>
-    <a href="#etapas">Etapas</a>
-    <a href="#importancia">Importância</a>
-  </nav>
+  <div class="container">
+    <header>
+      <h1 class="y2k-title">SPLASH_ZONE.EXE</h1>
+      <p class="subtitle">Aesthetic Y2K & Kidcore Cyber Oasis</p>
+    </header>
 
-  <!-- Conteúdo Principal -->
-  <main class="container">
-
-    <!-- Seção de Introdução -->
-    <section id="introducao" class="intro">
-      <h2>O que é o Ciclo Hidrológico?</h2>
-      <p>
-        O ciclo da água (ou ciclo hidrológico) é o processo permanente de transformação e circulação da água na Terra. 
-        Movido pela energia do Sol e pela gravidade, ele garante que a água passe pelos estados físico, gasoso e líquido, 
-        mantendo a vida no nosso planeta.
-      </p>
-    </section>
-
-    <!-- Seção das Etapas -->
-    <section id="etapas">
-      <div class="etapas-grid">
-
-        <div class="card-etapa">
-          <span class="numero">1</span>
-          <h3>Evaporação</h3>
-          <p>Com o calor do Sol, a água dos rios, lagos e oceanos aquece e se transforma em vapor, subindo para a atmosfera.</p>
+    <main>
+      <div class="bubble-card">
+        <div class="droplet-icon">💧</div>
+        <h2>Nível de Hidratação</h2>
+        <div class="counter" id="waterCounter">0%</div>
+        
+        <div class="button-group">
+          <button class="y2k-btn" id="btnDrink">Beber Água 💦</button>
+          <button class="y2k-btn alt" id="btnReset">Resetar 🔄</button>
         </div>
-
-        <div class="card-etapa">
-          <span class="numero">2</span>
-          <h3>Transpiração</h3>
-          <p>Os seres vivos, especialmente as plantas, liberam vapor de água para a atmosfera através da transpiração.</p>
-        </div>
-
-        <div class="card-etapa">
-          <span class="numero">3</span>
-          <h3>Condensação</h3>
-          <p>Ao subir, o vapor de água esfria e se transforma em pequenas gotas de água, formando as nuvens e a neblina.</p>
-        </div>
-
-        <div class="card-etapa">
-          <span class="numero">4</span>
-          <h3>Precipitação</h3>
-          <p>Quando as nuvens ficam carregadas e pesadas, a água cai de volta na superfície na forma de chuva, neve ou granizo.</p>
-        </div>
-
-        <div class="card-etapa">
-          <span class="numero">5</span>
-          <h3>Infiltração e Escoamento</h3>
-          <p>Parte da água penetra no solo alimentando lençóis freáticos, enquanto a outra parte escoa até retornar aos rios e oceanos.</p>
-        </div>
-
       </div>
-    </section>
+    </main>
 
-    <!-- Seção de Importância -->
-    <section id="importancia" class="importancia">
-      <h3>Por que o ciclo da água é vital?</h3>
-      <p>
-        Sem o ciclo da água, o clima da Terra seria extremo e imprevisível, e os ecossistemas não conseguiriam sobreviver. 
-        Ele limpa e distribui a água potável por todo o planeta, permitindo a agricultura, a geração de energia e a manutenção da vida.
-      </p>
-    </section>
+    <div class="bubbles-container" id="bubblesBg"></div>
+  </div>
 
-  </main>
-
-  <!-- Rodapé -->
-  <footer>
-    <p>&copy; O Ciclo da Água — Projeto Educativo sobre o Meio Ambiente</p>
-  </footer>
-
+  <script src="script.js"></script>
 </body>
 </html>
