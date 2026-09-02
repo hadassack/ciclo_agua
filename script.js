@@ -1,38 +1,47 @@
-let waterLevel = 0;
+document.addEventListener("DOMContentLoaded", () => {
+  // Lista de curiosidades para o botão do topo
+  const curiosidades = [
+    "A mesma água que você bebe hoje pode ter sido bebida por um dinossauro há milhões de anos! 🦖",
+    "Mais de 97% de toda a água da Terra é salgada e fica nos oceanos. 🌊",
+    "Apenas 1% de toda a água do planeta está disponível para consumo humano! 💧",
+    "As nuvens parecem leves, mas uma única nuvem de chuva pode pesar o mesmo que 100 elefantes! 🐘"
+  ];
 
-const counterDisplay = document.getElementById('waterCounter');
-const btnDrink = document.getElementById('btnDrink');
-const btnReset = document.getElementById('btnReset');
-const dropFx = document.getElementById('dropFx');
+  const btnCuriosidade = document.getElementById("btn-curiosidade");
+  const boxCuriosidade = document.getElementById("box-curiosidade");
 
-// Ação de som simulação + aumentar contador
-btnDrink.addEventListener('click', () => {
-  if (waterLevel < 100) {
-    waterLevel += 20;
-    counterDisplay.textContent = `${waterLevel}%`;
-    triggerDropAnimation();
-  }
-  
-  if (waterLevel === 100) {
-    counterDisplay.style.color = '#00ffcc';
-    alert('✨ HIDRATAÇÃO MÁXIMA! VERY Y2K! 💦✨');
-  }
+  btnCuriosidade.addEventListener("click", () => {
+    const itemAleatorio = curiosidades[Math.floor(Math.random() * curiosidades.length)];
+    boxCuriosidade.innerText = itemAleatorio;
+    boxCuriosidade.classList.remove("hidden");
+  });
+
+  // Lógica da janela Pop-up (Modal) nos Cards
+  const modal = document.getElementById("modal");
+  const modalTitulo = document.getElementById("modal-titulo");
+  const modalTexto = document.getElementById("modal-texto");
+  const closeBtn = document.querySelector(".close-btn");
+  const btnCards = document.querySelectorAll(".btn-card");
+
+  btnCards.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const card = e.target.closest(".card");
+      const titulo = card.querySelector("h2").innerText;
+      const info = card.getAttribute("data-info");
+
+      modalTitulo.innerText = titulo;
+      modalTexto.innerText = info;
+      modal.classList.remove("hidden");
+    });
+  });
+
+  closeBtn.addEventListener("click", () => {
+    modal.classList.add("hidden");
+  });
+
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.classList.add("hidden");
+    }
+  });
 });
-
-// Ação de resetar
-btnReset.addEventListener('click', () => {
-  waterLevel = 0;
-  counterDisplay.textContent = '0%';
-  counterDisplay.style.color = 'var(--yellow-kidcore)';
-});
-
-// Animação dinâmica de gota caindo na tela
-function triggerDropAnimation() {
-  dropFx.style.left = `${Math.random() * 80 + 10}%`;
-  dropFx.classList.remove('drop-animate');
-  
-  // Força o reflow para reiniciar a animação CSS
-  void dropFx.offsetWidth; 
-  
-  dropFx.classList.add('drop-animate');
-}
