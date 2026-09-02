@@ -1,32 +1,47 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A Incrível Jornada da Água! 💧</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
+document.addEventListener("DOMContentLoaded", () => {
+  // Lista de curiosidades para o botão do topo
+  const curiosidades = [
+    "A mesma água que você bebe hoje pode ter sido bebida por um dinossauro há milhões de anos! 🦖",
+    "Mais de 97% de toda a água da Terra é salgada e fica nos oceanos. 🌊",
+    "Apenas 1% de toda a água do planeta está disponível para consumo humano! 💧",
+    "As nuvens parecem leves, mas uma única nuvem de chuva pode pesar o mesmo que 100 elefantes! 🐘"
+  ];
 
-  <header class="hero">
-    <h1>💧 O Incrível Ciclo da Água 🌊</h1>
-    <p>Descubra como a água viaja pelo nosso planeta em uma aventura infinita!</p>
-    <button id="btn-curiosidade" class="btn-pop">✨ Curiosidade Surpresa!</button>
-    <div id="box-curiosidade" class="hidden"></div>
-  </header>
+  const btnCuriosidade = document.getElementById("btn-curiosidade");
+  const boxCuriosidade = document.getElementById("box-curiosidade");
 
-  <main class="container">
-    <section class="etapas-grid">
-      
-      <div class="card evaporacao" data-info="O Sol aquece a água dos rios, lagos e oceanos, transformando-a em vapor que sobe para o céu!">
-        <div class="icon">☀️</div>
-        <h2>1. Evaporação</h2>
-        <p>A água esquenta e vira vapor!</p>
-        <button class="btn-card">Saber mais</button>
-      </div>
+  btnCuriosidade.addEventListener("click", () => {
+    const itemAleatorio = curiosidades[Math.floor(Math.random() * curiosidades.length)];
+    boxCuriosidade.innerText = itemAleatorio;
+    boxCuriosidade.classList.remove("hidden");
+  });
 
-      <div class="card condensacao" data-info="Lá no alto, o vapor esfria e se junta em gotinhas de água, criando as nuvens fofinhas!">
-        <div class="icon">☁️</div>
-        <h2>2. Condensação</h2>
-        <p
+  // Lógica da janela Pop-up (Modal) nos Cards
+  const modal = document.getElementById("modal");
+  const modalTitulo = document.getElementById("modal-titulo");
+  const modalTexto = document.getElementById("modal-texto");
+  const closeBtn = document.querySelector(".close-btn");
+  const btnCards = document.querySelectorAll(".btn-card");
+
+  btnCards.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const card = e.target.closest(".card");
+      const titulo = card.querySelector("h2").innerText;
+      const info = card.getAttribute("data-info");
+
+      modalTitulo.innerText = titulo;
+      modalTexto.innerText = info;
+      modal.classList.remove("hidden");
+    });
+  });
+
+  closeBtn.addEventListener("click", () => {
+    modal.classList.add("hidden");
+  });
+
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.classList.add("hidden");
+    }
+  });
+});
