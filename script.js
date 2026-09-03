@@ -1,61 +1,193 @@
-const information = {
-evaporacao: {
-icon: "☀️",
-title: "Evaporação",
-text: "O calor do Sol aquece a água dos oceanos, rios e lagos. Parte dessa água se transforma em vapor e sobe para a atmosfera."
-},
+document.addEventListener("DOMContentLoaded", function () {
 
-condensacao: {
-icon: "☁️",
-title: "Condensação",
-text: "O vapor de água sobe para regiões mais frias, perde calor e se transforma em pequenas gotículas que formam as nuvens."
-},
+/* =====================
+BOTÃO EXPLORAR
+===================== */
 
-precipitacao: {
-icon: "🌧️",
-title: "Precipitação",
-text: "Quando as gotículas das nuvens ficam pesadas, a água retorna à superfície em forma de chuva, neve ou granizo."
-},
+const explorarBtn =
+document.getElementById("explorarBtn");
 
-infiltracao: {
-icon: "🌱",
-title: "Infiltração",
-text: "Parte da água da chuva penetra no solo e pode abastecer os lençóis subterrâneos."
-},
+explorarBtn.addEventListener("click", function () {
 
-escoamento: {
-icon: "🌊",
-title: "Escoamento",
-text: "A água percorre a superfície terrestre e segue para rios, lagos, mares e oceanos, reiniciando o ciclo."
-}
-};
+document
+  .getElementById("etapas")
+  .scrollIntoView({
+    behavior: "smooth"
+  });
 
-const cards = document.querySelectorAll(".cycle-card");
-
-const infoIcon = document.getElementById("info-icon");
-const infoTitle = document.getElementById("info-title");
-const infoText = document.getElementById("info-text");
-
-cards.forEach(card => {
-
-card.addEventListener("click", function () {
-
-const step = this.dataset.step;
-
-const data = information[step];
-
-
-cards.forEach(otherCard => {
-  otherCard.classList.remove("active");
 });
 
+/* =====================
+ETAPAS DO CICLO
+===================== */
 
-this.classList.add("active");
+const dados = {
+
+evaporacao: {
+  icone: "☀️",
+  numero: "ETAPA 01",
+  titulo: "Evaporação",
+  texto: "O Sol aquece a água presente nos rios, lagos, mares e oceanos. Parte dessa água se transforma em vapor e sobe para a atmosfera."
+},
 
 
-infoIcon.textContent = data.icon;
-infoTitle.textContent = data.title;
-infoText.textContent = data.text;
+condensacao: {
+  icone: "☁️",
+  numero: "ETAPA 02",
+  titulo: "Condensação",
+  texto: "Ao subir para regiões mais frias, o vapor de água perde calor e se transforma em pequenas gotículas que se agrupam e formam as nuvens."
+},
+
+
+precipitacao: {
+  icone: "🌧️",
+  numero: "ETAPA 03",
+  titulo: "Precipitação",
+  texto: "Quando as gotas presentes nas nuvens ficam muito pesadas, elas caem para a superfície em forma de chuva, neve ou granizo."
+},
+
+
+infiltracao: {
+  icone: "🌱",
+  numero: "ETAPA 04",
+  titulo: "Infiltração",
+  texto: "Parte da água que chega ao solo penetra na terra e pode abastecer os lençóis de água subterrâneos."
+},
+
+
+escoamento: {
+  icone: "🌊",
+  numero: "ETAPA 05",
+  titulo: "Escoamento",
+  texto: "A água percorre a superfície terrestre e segue para rios, lagos, mares e oceanos. Assim, o ciclo pode começar novamente."
+}
+
+};
+
+const botoes =
+document.querySelectorAll(".etapa-btn");
+
+const painelIcone =
+document.getElementById("painelIcone");
+
+const painelNumero =
+document.getElementById("painelNumero");
+
+const painelTitulo =
+document.getElementById("painelTitulo");
+
+const painelTexto =
+document.getElementById("painelTexto");
+
+botoes.forEach(function (botao) {
+
+botao.addEventListener("click", function () {
+
+
+  const etapa =
+    botao.dataset.etapa;
+
+
+  const dado =
+    dados[etapa];
+
+
+  /* Remove o ativo */
+
+  botoes.forEach(function (outroBotao) {
+
+    outroBotao.classList.remove("ativo");
+
+  });
+
+
+  /* Ativa o clicado */
+
+  botao.classList.add("ativo");
+
+
+  /* Atualiza o painel */
+
+  painelIcone.textContent =
+    dado.icone;
+
+
+  painelNumero.textContent =
+    dado.numero;
+
+
+  painelTitulo.textContent =
+    dado.titulo;
+
+
+  painelTexto.textContent =
+    dado.texto;
+
+
+  /* Pequena animação */
+
+  const painel =
+    document.querySelector(".painel");
+
+
+  painel.style.transform =
+    "scale(0.96)";
+
+
+  painel.style.opacity =
+    "0.6";
+
+
+  setTimeout(function () {
+
+    painel.style.transform =
+      "scale(1)";
+
+
+    painel.style.opacity =
+      "1";
+
+  }, 150);
+
+
+});
+
+});
+
+/* =====================
+QUIZ
+===================== */
+
+const respostas =
+document.querySelectorAll(".resposta");
+
+const resultado =
+document.getElementById("resultadoQuiz");
+
+respostas.forEach(function (resposta) {
+
+resposta.addEventListener("click", function () {
+
+
+  const correta =
+    resposta.dataset.correta;
+
+
+  if (correta === "true") {
+
+    resultado.textContent =
+      "🎉 ACERTOU! A água pode evaporar quando recebe calor do Sol!";
+
+
+  } else {
+
+    resultado.textContent =
+      "😅 Quase! Pense no que acontece com a água quando ela é aquecida pelo Sol.";
+
+  }
+
+
+});
 
 });
 
