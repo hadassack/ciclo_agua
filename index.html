@@ -1,339 +1,56 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="cycle-container"> <div class="cycle-card active"
+       onclick="showInfo('evaporacao', this)"><div class="number">01</div>
 
-  <title>Ciclo da Água</title>
+<div class="icon">☀️</div>
 
-  <link rel="stylesheet" href="style.css">
+<h3>Evaporação</h3>
 
-  <!-- Fonte -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-</head>
+<p>
+  O calor transforma a água líquida em vapor.
+</p>
 
-<body>
+  </div> <div class="cycle-card"
+       onclick="showInfo('condensacao', this)"><div class="number">02</div>
 
-  <!-- FUNDO ANIMADO -->
-  <div class="background"></div>
+<div class="icon">☁️</div>
 
-  <!-- MENU -->
-  <nav>
-    <div class="logo">
-      💧 AQUA<span>CYCLE</span>
-    </div>
+<h3>Condensação</h3>
 
-    <ul>
-      <li><a href="#inicio">Início</a></li>
-      <li><a href="#ciclo">O Ciclo</a></li>
-      <li><a href="#etapas">Etapas</a></li>
-    </ul>
-  </nav>
+<p>
+  O vapor se resfria e forma as nuvens.
+</p>
 
+  </div> <div class="cycle-card"
+       onclick="showInfo('precipitacao', this)"><div class="number">03</div>
 
-  <!-- INÍCIO -->
-  <section id="inicio" class="hero">
+<div class="icon">🌧️</div>
 
-    <div class="hero-text">
+<h3>Precipitação</h3>
 
-      <p class="mini-title">🌎 UM CICLO QUE NUNCA PARA</p>
+<p>
+  A água retorna à superfície.
+</p>
 
-      <h1>
-        O incrível
-        <span>Ciclo da Água</span>
-      </h1>
+  </div> <div class="cycle-card"
+       onclick="showInfo('infiltracao', this)"><div class="number">04</div>
 
-      <p class="description">
-        A água está em constante movimento pela natureza,
-        transformando-se e viajando entre oceanos, nuvens,
-        rios e a atmosfera.
-      </p>
+<div class="icon">🌱</div>
 
-      <a href="#ciclo" class="button">
-        Explorar o ciclo 💧
-      </a>
+<h3>Infiltração</h3>
 
-    </div>
+<p>
+  Parte da água entra no solo.
+</p>
 
+  </div> <div class="cycle-card"
+       onclick="showInfo('escoamento', this)"><div class="number">05</div>
 
-    <!-- ILUSTRAÇÃO -->
-    <div class="water-visual">
+<div class="icon">🌊</div>
 
-      <div class="sun">☀️</div>
+<h3>Escoamento</h3>
 
-      <div class="cloud cloud1">☁️</div>
-      <div class="cloud cloud2">☁️</div>
+<p>
+  A água retorna aos rios e oceanos.
+</p>
 
-      <div class="rain">
-        💧 💧 💧 💧 💧
-      </div>
-
-      <div class="mountain">
-        ⛰️
-      </div>
-
-      <div class="water">
-        🌊🌊🌊🌊🌊
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- CICLO -->
-  <section id="ciclo" class="cycle-section">
-
-    <p class="mini-title">
-      🔄 ENTENDA O PROCESSO
-    </p>
-
-    <h2>
-      A jornada de uma
-      <span>gota de água</span>
-    </h2>
-
-    <p class="section-description">
-      Clique nas etapas e descubra o que acontece em cada
-      momento do ciclo da água.
-    </p>
-
-
-    <div class="cycle-container">
-
-      <div class="cycle-card active"
-           onclick="showInfo('evaporacao')">
-
-        <div class="number">01</div>
-
-        <div class="icon">☀️</div>
-
-        <h3>Evaporação</h3>
-
-        <p>
-          O calor transforma a água líquida em vapor.
-        </p>
-
-      </div>
-
-
-      <div class="cycle-card"
-           onclick="showInfo('condensacao')">
-
-        <div class="number">02</div>
-
-        <div class="icon">☁️</div>
-
-        <h3>Condensação</h3>
-
-        <p>
-          O vapor se resfria e forma as nuvens.
-        </p>
-
-      </div>
-
-
-      <div class="cycle-card"
-           onclick="showInfo('precipitacao')">
-
-        <div class="number">03</div>
-
-        <div class="icon">🌧️</div>
-
-        <h3>Precipitação</h3>
-
-        <p>
-          A água retorna à superfície.
-        </p>
-
-      </div>
-
-
-      <div class="cycle-card"
-           onclick="showInfo('infiltracao')">
-
-        <div class="number">04</div>
-
-        <div class="icon">🌱</div>
-
-        <h3>Infiltração</h3>
-
-        <p>
-          Parte da água entra no solo.
-        </p>
-
-      </div>
-
-
-      <div class="cycle-card"
-           onclick="showInfo('escoamento')">
-
-        <div class="number">05</div>
-
-        <div class="icon">🌊</div>
-
-        <h3>Escoamento</h3>
-
-        <p>
-          A água retorna aos rios e oceanos.
-        </p>
-
-      </div>
-
-    </div>
-
-
-    <!-- CAIXA INTERATIVA -->
-
-    <div class="info-box">
-
-      <div id="info-icon">☀️</div>
-
-      <div>
-
-        <h3 id="info-title">
-          Evaporação
-        </h3>
-
-        <p id="info-text">
-          O calor do Sol aquece a água dos oceanos,
-          rios e lagos. Assim, parte dessa água se
-          transforma em vapor e sobe para a atmosfera.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- ETAPAS -->
-  <section id="etapas" class="steps-section">
-
-    <h2>
-      O ciclo nunca
-      <span>termina.</span>
-    </h2>
-
-
-    <div class="timeline">
-
-      <div class="timeline-item">
-
-        <div class="timeline-dot">
-          💧
-        </div>
-
-        <div>
-          <h3>1. A água aquece</h3>
-
-          <p>
-            O Sol fornece energia para iniciar o processo.
-          </p>
-        </div>
-
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-dot">
-          ☁️
-        </div>
-
-        <div>
-          <h3>2. As nuvens se formam</h3>
-
-          <p>
-            O vapor se transforma novamente em pequenas gotas.
-          </p>
-        </div>
-
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-dot">
-          🌧️
-        </div>
-
-        <div>
-          <h3>3. A chuva acontece</h3>
-
-          <p>
-            A água retorna para a superfície terrestre.
-          </p>
-        </div>
-
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-dot">
-          🌎
-        </div>
-
-        <div>
-          <h3>4. Tudo começa novamente</h3>
-
-          <p>
-            A água volta para rios, mares e oceanos.
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- CURIOSIDADE -->
-
-  <section class="fact-section">
-
-    <div class="fact-card">
-
-      <div class="fact-icon">
-        ✨💧
-      </div>
-
-      <h2>Você sabia?</h2>
-
-      <p>
-        A mesma água que existe hoje no planeta
-        pode ter passado por dinossauros milhões
-        de anos atrás!
-      </p>
-
-    </div>
-
-  </section>
-
-
-  <!-- RODAPÉ -->
-
-  <footer>
-
-    <h2>💧 AQUACYCLE</h2>
-
-    <p>
-      Um pequeno projeto sobre o grande ciclo da água.
-    </p>
-
-    <p class="footer-small">
-      🌎 Proteja a água. Proteja a vida.
-    </p>
-
-  </footer>
-
-
-  <script src="script.js"></script>
-
-</body>
-</html>
+  </div></div>
